@@ -1,0 +1,23 @@
+13:41:46 [App     ] OpenMVS x64 v2.3.0
+13:41:46 [App     ] Build date: Mar 28 2024, 18:17:33
+13:41:46 [App     ] CPU: Intel(R) Core(TM) i9-14900KF (32 cores)
+13:41:46 [App     ] RAM: 127.83GB Physical Memory 128.00TB Virtual Memory
+13:41:46 [App     ] OS: Windows 8 x64
+13:41:46 [App     ] Disk: 103.81GB (300.00GB) space
+13:41:46 [App     ] SSE & AVX compatible CPU & OS detected
+13:41:46 [App     ] Command line: InterfaceCOLMAP -i result -o result\sparse\res.mvs --image-folder images
+13:41:46 [App     ] Reading cameras: result/sparse/cameras.bin
+13:41:46 [App     ] Reading images: result/sparse/images.bin
+13:41:46 [App     ] Reading points: result/sparse/points3D.bin
+13:41:46 [App     ] Exported data: 9 images, 11678 points (31ms)
+13:41:46 [App     ] MEMORYINFO: {
+13:41:46 [App     ] 	PageFaultCount 2275
+13:41:46 [App     ] 	PeakWorkingSetSize 7.94MB
+13:41:46 [App     ] 	WorkingSetSize 6.43MB
+13:41:46 [App     ] 	QuotaPeakPagedPoolUsage 53.59KB
+13:41:46 [App     ] 	QuotaPagedPoolUsage 53.59KB
+13:41:46 [App     ] 	QuotaPeakNonPagedPoolUsage 7.97KB
+13:41:46 [App     ] 	QuotaNonPagedPoolUsage 7.84KB
+13:41:46 [App     ] 	PagefileUsage 1.87MB
+13:41:46 [App     ] 	PeakPagefileUsage 3.29MB
+13:41:46 [App     ] } ENDINFO

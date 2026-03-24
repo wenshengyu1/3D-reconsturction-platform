@@ -1,0 +1,12 @@
+
+==============================================================================
+Loading database
+==============================================================================
+
+Loading cameras... 9 in 0.000s
+Loading matches... 36 in 0.000s
+Loading images... 9 in 0.001s (connected 9)
+Building correspondence graph... in 0.002s (ignored 0)
+
+Elapsed time: 0.000 [minutes]
+

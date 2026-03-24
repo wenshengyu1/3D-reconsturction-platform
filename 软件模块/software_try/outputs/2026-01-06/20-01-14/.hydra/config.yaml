@@ -1,0 +1,37 @@
+type: eval_dataset
+ray:
+  enable: false
+  slurm: false
+  n_workers: 2
+  n_cpus_per_worker: 5
+  n_gpus_per_worker: 1
+  local_mode: false
+n_scene: null
+sub_use_ray: false
+sub_ray_n_worker: 2
+verbose: false
+visualize: false
+exp_name: ''
+dataset_base_dir: null
+dataset_name: null
+output_base_dir: null
+use_prior_intrin: false
+method: null
+neuralsfm:
+  NEUSFM_enable_post_optimization: true
+  NEUSFM_triangulation_mode: false
+  n_images: null
+  img_resize: null
+  down_sample_ratio: null
+  img_pair_strategy: exhaustive
+  INDEX_num_of_pair: null
+  close_eval: false
+  redo_all: true
+  redo_sfm: false
+  redo_matching: false
+  redo_refine: false
+colmap_cfg:
+  ImageReader_single_camera: false
+  min_model_size: 3
+  filter_max_reproj_error: 4
+  no_refine_intrinsics: true
