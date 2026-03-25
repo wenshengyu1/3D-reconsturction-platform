@@ -1,0 +1,88 @@
+import cv2
+import time
+import RPi.GPIO as GPIO
+import time
+
+servo2_pin = 12  # 连接伺服电机的引脚
+camera0 = cv2.VideoCapture(0)           #第二个摄像头
+camera0.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'))
+camera0.set(3,3840)
+camera0.set(4,2880)
+camera0.set(cv2.CAP_PROP_BUFFERSIZE, 1)
+camera1 = cv2.VideoCapture(0)           #第二个摄像头
+camera1.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'))
+camera1.set(3,3840)
+camera1.set(4,2880)
+camera1.set(cv2.CAP_PROP_BUFFERSIZE, 1)
+def setup():
+    GPIO.setmode(GPIO.BOARD)
+    GPIO.setup(servo2_pin, GPIO.OUT)
+
+    # 初始化PWM
+    global servo2_pwm
+    servo2_pwm = GPIO.PWM(servo2_pin, 50)  # 频率设置为50Hz，一般伺服电机使用50Hz
+    servo2_pwm.start(2.5)
+    time.sleep(2.5)
+    servo2_pwm.ChangeDutyCycle(0)
+
+def set_servo_angle(servo, angle):
+    duty_cycle = angle / 18.0 + 2.5  # 计算占空比
+    servo.ChangeDutyCycle(duty_cycle)  # 设置占空比
+    time.sleep(0.45)  # 给伺服电机一些时间去达到目标位置
+    servo.ChangeDutyCycle(0)  # 停止PWM信号防止伺服电机抖动
+    time.sleep(5)
+
+
+def capture_image(camera, save_path):
+    # 读取一帧图像
+    ret, frame = camera.read()
+    if ret:
+        # 保存图像
+        cv2.imwrite(save_path, frame)
+        print("图片已保存：", save_path)
+    else:
+        print("无法读取摄像头图像")
+
+
+def main():
+    # 打开摄像头
+
+    setup()
+    for i in range(5):
+        ret,_=camera0.read()
+        time.sleep(2)
+        print(i)
+    jd=0
+    flag=True
+    while jd<=180:
+        if flag==True:
+            set_servo_angle(servo2_pwm, jd)
+            print("转到{}度".format(jd))
+            time.sleep(1)
+            jd=jd+9
+        flag=False
+
+        # 获取当前时间
+        current_time = time.strftime("%Y-%m-%d_%H-%M-%S", time.localtime())
+
+        # 生成保存路径
+        main_path = "/home/images/"
+        pic_name = f"image_{current_time}1.jpg"
+        save_path = main_path + pic_name
+        # 拍照并保存图片
+        capture_image(camera0, save_path)
+        capture_image(camera1, save_path)
+        time.sleep(2)
+        flag=True
+
+    camera0.release()
+    camera1.release()
+    cv2.destroyAllWindows()
+    servo2_pwm.stop()
+    GPIO.cleanup()
+    print("退出")
+
+
+
+if __name__ == '__main__':
+    main()
